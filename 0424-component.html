@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0424-component</title>
+    <script src='./vue.js'></script>
+</head>
+
+<body>
+    <div id='root'>
+        <div>
+            <input type="text" v-model='todoValue'>
+            <button @click='handleBtnClick'>button</button>
+        </div>
+        <ul>
+            <todo-item v-bind:content='item' v-for='item in list'></todo-item>
+        </ul>
+    </div>
+    <script>
+        Vue.component('todoItem', {
+            props:['content'],
+            template: '<li>{{content}}</li>'
+        })
+        let app = new Vue({
+            el: '#root',
+            data: {
+                todoValue: '',
+                list: []
+            },
+            methods:{
+                handleBtnClick(){
+                    this.list.push(this.todoValue)
+                    this.todoValue = ''
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
