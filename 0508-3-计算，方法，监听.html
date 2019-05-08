@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0508-3-计算，方法，监听</title>
+    <script src='./vue.js'></script>
+</head>
+
+<body>
+    <div id='app'>
+        {{fullName()}}
+        <!--方法调用需要表明是函数-->
+        {{fullName}}
+        <!--计算属性&&监听可直接监听函数-->
+        {{age}}
+    </div>
+    <script>
+        //print fullName
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                firstName: "Sprite",
+                lastName: "G",
+                fullName: "",    //监听需要先定义fullName
+                age: 25,
+            },
+            //监听，有缓存机制
+            watch: {
+                firstName() {
+                    this.fullName = this.firstName + " " + this.lastName
+                },
+                lastName() {
+                    this.fullName = this.firstName + " " + this.lastName
+                }
+            },
+
+            // 方法，无缓存机制
+            methods: {
+                fullName() {
+                    return this.firstName + " " + this.lastName
+                }
+            },
+
+            // 计算属性，有缓存机制，效率高
+            computed: {
+                fullName() {
+                    return this.firstName + " " + this.lastName
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

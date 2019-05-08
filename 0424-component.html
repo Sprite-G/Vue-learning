@@ -16,24 +16,39 @@
             <button @click='handleBtnClick'>button</button>
         </div>
         <ul>
-            <todo-item v-bind:content='item' v-for='item in list'></todo-item>
+            <todo-item v-bind:content='item' v-for='item in list' @delete = 'handleItemDelete'></todo-item>
         </ul>
     </div>
     <script>
-        Vue.component('todoItem', {
-            props:['content'],
-            template: '<li>{{content}}</li>'
-        })
+        // Vue.component('todoItem', {
+        //     props: ['content'],
+        //     template: '<li>{{content}}</li>'
+        // })
+        let todoItemX = {
+            props: ['content'],
+            template: '<li @click = "handleItemClick">{{content}}</li>',
+            methods: {
+                handleItemClick() {
+                    this.$emit('delete')
+                },
+            }
+        }
         let app = new Vue({
             el: '#root',
+            components: {
+                todoItem: todoItemX
+            },
             data: {
                 todoValue: '',
                 list: []
             },
-            methods:{
-                handleBtnClick(){
+            methods: {
+                handleBtnClick() {
                     this.list.push(this.todoValue)
                     this.todoValue = ''
+                },
+                handleItemDelete(){
+                    alert('delete')
                 }
             }
         })
