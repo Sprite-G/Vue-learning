@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0509-Vue条件渲染</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-if='print === "a"'>{{message}}<input key='a' /></div>
+        <div v-else-if='print === "b"'>{{message + " else if"}}<input key='b' /></div>
+        <!--Vue会尽量复用dom组件，添加key值作为区分-->
+        <div v-else='print'>{{message + " else"}}</div>
+        <div v-show='print'>{{message}}</div>
+        <!--使用v-show时dom层改变条件无需重复加载，效率更高,效果 == v-if但无else -->
+    </div>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                print: 'a',
+                message: 'hello world'
+            },
+        })
+    </script>
+</body>
+
+</html>
