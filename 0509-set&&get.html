@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0509-set&&get</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{fullName}}
+    </div>
+    <script>
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                firstName: "Sprite",
+                lastName: "G"
+            },
+            computed: {
+                fullName: {              //set get 为计算属性内置函数，对计算属性对象传值（fullName = value）由set接收值后经set与get处理相应值
+                    get() {
+                        return this.firstName + " " + this.lastName
+                    },
+                    set(value) {
+                        this.firstName = value
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

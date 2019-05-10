@@ -27,7 +27,7 @@
                 fullName: "",    //监听需要先定义fullName
                 age: 25,
             },
-            //监听，有缓存机制
+            //监听器，有缓存机制
             watch: {
                 firstName() {
                     this.fullName = this.firstName + " " + this.lastName
@@ -44,7 +44,7 @@
                 }
             },
 
-            // 计算属性，有缓存机制，效率高
+            // 计算属性，有缓存机制,当依赖的值发生变化时重新计算，效率高
             computed: {
                 fullName() {
                     return this.firstName + " " + this.lastName
