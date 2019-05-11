@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0511-Vue中的列表渲染</title>
+    <script src='./vue.js'></script>
+</head>
+
+<body>
+    <div id='app'>
+        <template v-for='(item,index) of myArr' :key='item.id'>  <!--使用模板占位符可包裹元素且不在Dom出现,template不支持绑定key值-->
+            <div>
+                {{item.text}}---{{index}}
+            </div>
+            <span>
+                {{item.text}}
+            </span>
+        </template>
+
+        <div v-for='(item,key,index) of myObj'>
+            {{item}}---{{index}}---{{key}}
+        </div>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {                //无法用maArr[]方式添加数据mayArr的子项（（可修改数据但无法体现在dom）但可以查找到子项的子项并可修改），需使用数组或对象方法，或修改myArr/Obj引用
+                myArr: [{ id: '1', text: 'today' }, { id: '2', text: 'is' }, { id: '3', text: 'may' }, { id: '4', text: 'eleven' }],
+                myObj: { month: 'may', day: 'eleven' }
+            }
+        })
+    </script>
+</body>
+
+</html>

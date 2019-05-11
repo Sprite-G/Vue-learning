@@ -15,30 +15,6 @@
             <input type="text" v-model='todoValue'>
             <button @click='handleBtnClick'>button</button>
         </div>
-<<<<<<< HEAD
-        <ul>
-            <todo-item v-bind:content='item' v-for='item in list' @delete = 'handleItemDelete'></todo-item>
-        </ul>
-    </div>
-    <script>
-        // Vue.component('todoItem', {
-        //     props: ['content'],
-        //     template: '<li>{{content}}</li>'
-        // })
-        let todoItemX = {
-            props: ['content'],
-            template: '<li @click = "handleItemClick">{{content}}</li>',
-            methods: {
-                handleItemClick() {
-                    this.$emit('delete')
-                },
-            }
-        }
-        let app = new Vue({
-            el: '#root',
-            components: {
-                todoItem: todoItemX
-=======
         <ol>
             <todo-item :content='item' v-for='(item,index) in list' :index='index' @delete='handleItemDelete'>
             </todo-item>
@@ -67,7 +43,6 @@
             el: '#root',
             components: {
                 todoItem: Item                                 //局部组件需在父组件注册
->>>>>>> 77a8bef4daeef6614a8a6470855db81b2dda9716
             },
             data: {
                 todoValue: '',
@@ -82,13 +57,8 @@
                     this.list.push(this.todoValue)
                     this.todoValue = ''
                 },
-<<<<<<< HEAD
-                handleItemDelete(){
-                    alert('delete')
-=======
                 handleItemDelete(index) {
                     this.list.splice(index, 1)
->>>>>>> 77a8bef4daeef6614a8a6470855db81b2dda9716
                 }
             }
         })
