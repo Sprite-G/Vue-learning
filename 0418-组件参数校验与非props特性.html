@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0518-组件参数校验与非props特性</title>
+    <script src='./vue.js'></script>
+</head>
+
+<body>
+    <div id='root'>
+        <child content='hello world'></child>
+        <!--若要绑定其它类型使用 ：content绑定内容为JS表达式-->
+    </div>
+    <script>
+        Vue.component('child', {
+            props: {                                        //通过props对参数设置校验条件
+                content: {                                   //父组件传值在子组件有相应props接受为props特性，props特性不在dom层展示，非props特性会在dom层显示
+                    type: [String, Number, Object],
+                    required: false,
+                    default: 'default value',
+                    validator: function (value) {
+                        return (value.length > 5)
+                    }
+                }
+            },
+            template: '<div>{{content}}</div>'
+        })
+        let app = new Vue({
+            el: '#root',
+        })
+    </script>
+</body>
+
+</html>
