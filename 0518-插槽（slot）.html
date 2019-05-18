@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0518-插槽（slot）</title>
+    <script src='./vue.js'></script>
+</head>
+
+<body>
+    <div id='root'>
+        <child>
+            <div class='header' slot='header'>header</div>
+            <div slot='footer'>footer</div>
+        </child>
+    </div>
+    <script>
+        let child = {
+            props: ['val'],
+            template: `<div>
+                        <slot name = 'header'></slot>
+                        <div>content</div>
+                        <slot name = 'footer'></slot>
+                        <slot name = 'happy'><div>default slot</div></slot>
+                        <slot></slot>                                             
+                    </div>`
+        }//已命名插槽只显示对应插槽，未匹配时可使用默认插槽，无定值插槽将显示所有未命名插槽
+        let vm = new Vue({
+            el: '#root',
+            components: {
+                child: child
+            }
+        })
+    </script>
+</body>
+
+</html>

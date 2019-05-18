@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0517-父子组件的数据传递</title>
+    <script src='./vue.js'></script>
+</head>
+
+<body>
+    <div id='root'>
+        <counter :count='1' @change='addClick'></counter>
+        <counter :count='2' @change='addClick'></counter>
+        <div>{{total}}</div>
+    </div>
+    <script>
+        let counter = {
+            props: ['count'],
+            data: function () {
+                return {
+                    number: this.count                           //子组件修改父组件数据易出错，所以定义一个新变量作为父组件数据的符文
+                }
+            },
+            methods: {
+                handleClick() {
+                    this.number++
+                    this.$emit('change', 2)                    //子组件向父组件发出数据或事件，实现子组件向父组件传值
+                }
+            },
+            template: '<div @click = "handleClick">{{number}}</div>'
+        }
+        let vm = new Vue({
+            el: '#root',
+            components: {
+                counter: counter
+            },
+            data: {
+                total: 3
+            },
+            methods: {
+                addClick(step) {                          //子组件发出数据可传入父组件
+                    this.total += step
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>
