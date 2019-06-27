@@ -16,17 +16,17 @@
             <button @click='handleBtnClick'>button</button>
         </div>
         <ol>
-            <todo-item :content='item' v-for='(item,index) in list' :index='index' @delete='handleItemDelete'>
+            <todo-item :content='item' v-for='(item,index) in list' :index='index' @delet='handleItemDelete'>
             </todo-item>
         </ol>
     </div>
     <script>
         let Item = {                                    //局部组件
             props: ['content', 'index'],
-            template: '<li @click = handleItemClick>{{content.text}}</li>',
+            template: '<li @click = handleItemClick>{{content}}</li>',
             methods: {
                 handleItemClick() {
-                    this.$emit('delete', this.index)
+                    this.$emit('delet', this.index)
                 }
             }
         }

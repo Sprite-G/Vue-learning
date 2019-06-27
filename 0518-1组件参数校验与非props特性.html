@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>0518-组件参数校验与非props特性</title>
+    <title>0518-1组件参数校验与非props特性</title>
     <script src='./vue.js'></script>
 </head>
 
@@ -16,8 +16,8 @@
     </div>
     <script>
         Vue.component('child', {
-            props: {                                        //通过props对参数设置校验条件
-                content: {                                   //父组件传值在子组件有相应props接受为props特性，props特性不在dom层展示，非props特性会在dom层显示
+            props: {        //通过props对参数设置校验条件
+                content: {  //父组件传值在子组件有相应props接受为props特性，props特性不在dom层展示，非props特性会在dom层显示
                     type: [String, Number, Object],
                     required: false,
                     default: 'default value',

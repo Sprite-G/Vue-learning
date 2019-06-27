@@ -22,11 +22,13 @@
             },
             computed: {
                 fullName: {              //set get 为计算属性内置函数，对计算属性对象传值（fullName = value）由set接收值后经set与get处理相应值
-                    get() {
+                    get() {             //读取fullName时执行
                         return this.firstName + " " + this.lastName
                     },
-                    set(value) {
-                        this.firstName = value
+                    set(value) {             //设置fullName时执行
+                        let arr = value.split(' ')
+                        this.firstName = arr[0]
+                        this.lastName = arr[1]
                     }
                 }
             }

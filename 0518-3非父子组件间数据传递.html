@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>0518-非父子组件间数据传递（Bus/总线/发布订阅模式/观察者模式）</title>
+    <title>0518-3非父子组件间数据传递（Bus/总线/发布订阅模式/观察者模式）</title>
     <script src='./vue.js'></script>
 </head>
 
@@ -28,7 +28,7 @@
             template: '<div @click = "handleClick">{{newWord}}</div>',
             methods: {
                 handleClick() {
-                    this.bus.$emit('change', this.word)                       //由bus发出数据
+                    this.bus.$emit('change', this.word)    //由bus发出数据
                 }
             },
             mounted() {
