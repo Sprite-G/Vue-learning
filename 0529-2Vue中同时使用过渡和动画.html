@@ -25,11 +25,13 @@
     <div id='root'>
         <transition name='fade' 
         ：duration = '{enter:5000,leave:3000}'
-        appear appear-active-class='animated swing fade-enter-active'
+        appear 
+        appear-active-class='animated swing fade-enter-active'
         enter-active-class='animated swing fade-enter-active'
         leave-active-class='animated shake fade-leave-active'>
+        <!-- appear 添加显示时的效果（入场） -->
         <!-- ：duration = '{enter:5000,leave:3000}' 直接设置动画时长（其中每个动画播放时长不受影响）-->
-        <!-- type = 'transition' 确定以那种动画的时长为总时长（其中每个动画播放时长不受影响） -->
+        <!-- type = 'transition' 确定以哪种动画的时长为总时长（其中每个动画播放时长不受影响） -->
         <div v-if='show'>hello new world</div>
         </transition>
         <button @click='clickEvent'>button</button>
