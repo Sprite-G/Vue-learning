@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0521-Vue中的样式绑定</title>
+    <script src='./vue.js'></script>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='root'>
+        <!-- <div @click="clickEvent" :class="{active:isActive}">hello world</div>  -->
+        <!-- 用isActive控制active类的显示与否 -->
+        <!-- <div @click="clickEvent" :class="[activeClass,classOne]">hello world</div> -->
+        <!-- 控制数组项的值来实现不同类的渲染 -->
+        <div @click="clickEvent" :style="[styleObj]">hello world</div>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#root',
+            data: {
+                // isActive: false,
+                activeClass: '',
+                classOne: '',
+                styleObj: {
+                    color: 'red'
+                }
+            },
+            methods: {
+                clickEvent() {
+                    // this.isActive = this.isActive === true ? false : true
+                    // this.activeClass = this.activeClass === 'active' ? '' : 'active'
+                    this.styleObj.color = this.styleObj.color === 'red' ? '' : 'red'
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

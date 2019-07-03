@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0529-Vue中使用animate.css库</title>
+    <script src='./vue.js'></script>
+    <link rel="stylesheet" href="animate.css">
+    <style>
+        @keyframes bounce-in {
+
+            /*keyframes封装动画*/
+            0% {
+                transform: scale(0);
+            }
+
+            50% {
+                transform: scale(1.5);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .active {
+            transform-origin: left center;
+            animation: bounce-in 3s
+        }
+
+        .leave {
+            transform-origin: left center;
+            animation: bounce-in 3s reverse
+        }
+    </style>
+</head>
+
+<body>
+    <div id='root'>
+        <transition name='foo' enter-active-class='active' leave-active-class='leave'>
+            <!--在dom层指定后可使用自定义CSS名称-->
+            <div v-if='show'>hello world</div>
+        </transition>
+        <transition enter-active-class='animated swing' leave-active-class='animated shake'>
+            <!--引用animate动画库内的动画-->
+            <div v-if='show'>hello new world</div>
+        </transition>
+        <button @click='clickEvent'>button</button>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#root',
+            data: {
+                show: true
+            },
+            methods: {
+                clickEvent() {
+                    this.show = !this.show
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

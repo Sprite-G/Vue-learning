@@ -11,7 +11,8 @@
 
 <body>
     <div id='app'>
-        <template v-for='(item,index) of myArr' :key='item.id'>  <!--使用模板占位符可包裹元素且不在Dom出现,template不支持绑定key值-->
+        <template v-for='(item,index) of myArr' :key='item.id'>
+            <!--使用模板占位符可包裹元素且不在Dom出现,template不支持绑定key值-->
             <div>
                 {{item.text}}---{{index}}
             </div>

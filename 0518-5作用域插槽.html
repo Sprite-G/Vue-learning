@@ -13,9 +13,16 @@
     <div id='root'>
         <child>
             <template slot-scope='val'>
+<<<<<<< HEAD:0518-作用域插槽.html
                 <!--作用域插槽固定使用template，slot-scope声明从子组件接受的数据存放名-->
                 <li>{{val.i}}{{val}}</li>
                 <!--从子组件接收数据的展示形式-->
+=======
+                <!--作用域插槽固定使用template，slot-scope声明从子组件接受的数据存放-->
+                <li>{{val}}</li>
+                <li>{{val.itemP}}</li>
+                <!--从子组件接收的值展示形式-->
+>>>>>>> 579e79a5854dbdc80ec445fbaf69e79211e198ae:0518-5作用域插槽.html
             </template>
         </child>
     </div>
@@ -23,14 +30,23 @@
         let child = {
             data() {
                 return {
-                    list: [1, 2, 3, 4]
+                    list: [{ 'a': 1 }, 2, 3, 4]
                 }
             },
             template: `<div>   
                     <ul>
+<<<<<<< HEAD:0518-作用域插槽.html
                         <slot v-for = 'item of list' :i = item>console.log(list)</slot>
                     </ul>                                      
                       </div>`,
+=======
+                        <slot v-for = 'item of list' 
+                        :itemP = item      
+                        ></slot>
+                    </ul>                                      
+                      </div>`
+                    //   传出item
+>>>>>>> 579e79a5854dbdc80ec445fbaf69e79211e198ae:0518-5作用域插槽.html
         }
         let vm = new Vue({
             el: '#root',

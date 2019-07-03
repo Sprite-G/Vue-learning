@@ -14,13 +14,15 @@
         <child>
             <div class='header' slot='header'>header</div>
             <div slot='footer'>footer</div>
+            <div>hello</div>
+            <!-- 子组件接收父组件传递的dom元素并于插槽内显示 -->
         </child>
     </div>
     <script>
         let child = {
             props: ['val'],
             template: `<div>
-                        <slot name = 'header'></slot>
+                        <slot name = 'header'>default</slot>
                         <div>content</div>
                         <slot name = 'footer'></slot>
                         <slot name = 'happy'><div>default slot</div></slot>

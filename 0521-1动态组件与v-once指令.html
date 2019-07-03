@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0521-动态组件与v-once指令</title>
+    <script src='./vue.js'></script>
+</head>
+
+<body>
+    <div id='root'>
+        <!-- <component :is='type'></component>                          Vue自带动态组件，根据is来显示内容 -->
+        <child-one v-if='type === "child-one"'></child-one>
+        <child-two v-if='type === "child-two"'></child-two>
+        <button @click='clickEvent'>change</button>
+    </div>
+    <script>
+        let childOne = {
+            data() {
+                return {
+                    val: 'child-one'
+                }
+            },
+            template: '<div v-once>{{val}}</div>'           //使用v-once指令来渲染静态内容，将静态内容放入内存，提高（切换）展示效率
+        }
+        let childTwo = {
+            data() {
+                return {
+                    val: 'child-two'
+                }
+            },
+            template: '<div v-once>{{val}}</div>'
+        }
+        let vm = new Vue({
+            el: '#root',
+            components: {
+                childOne: childOne,
+                childTwo: childTwo
+            },
+            data: {
+                type: 'child-one'
+            },
+            methods: {
+                clickEvent() {
+                    this.type = (this.type === 'child-one' ? 'child-two' : 'child-one')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

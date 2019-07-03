@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0529-Vue中的JS动画与velocity.js</title>
+    <script src='./vue.js'></script>
+    <script src="./velocity.min.js"></script>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div id='root'>
+        <transition 
+        @before-enter='handleBeforeEnter' 
+        @enter='handleEnter' 
+        @after-enter='handleafterEnter'>
+        <div v-if='show'>hello new world</div>
+        <!-- 利用三个钩子函数对显示（leave为隐藏）阶段进行不同的动画操作 -->
+        </transition>
+        <button @click='clickEvent'>button</button>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#root',
+            data: {
+                show: true
+            },
+            methods: {
+                clickEvent() {
+                    this.show = !this.show
+                },
+                handleBeforeEnter(el) {
+                    el.style.color = 'red';
+                },
+                handleEnter(el, done) {
+                    setTimeout(() => {
+                        el.style.color = 'yellow'
+                        done()          // 执行完毕后调用done（）接下去执行after函数                        
+                    }, 2000)
+                },
+                handleafterEnter(el) {
+                    setTimeout(() => {
+                        el.style.color = 'black'
+                    }, 2000)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

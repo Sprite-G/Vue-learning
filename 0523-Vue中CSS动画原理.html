@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>0523-Vue中CSS动画原理</title>
+    <script src='./vue.js'></script>
+    <style>
+        .v-enter-active {
+            transition: opacity 3s;
+        }
+
+        .v-leave-active {
+            transition: opacity 3s;
+        }
+
+        .foo-enter {
+            /*当transition有自定义名称时使用自定义名称CSS*/
+            opacity: 0;
+        }
+
+        .foo-enter-active {
+            transition: opacity 3s;
+        }
+
+        .foo-leave-to {
+            opacity: 0;
+        }
+
+        .foo-leave-active {
+            transition: opacity 3s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='root'>
+        <transition>
+            <!--当使用transition标签时自动加入固定的CSS样式以控制渐变效果-->
+            <div v-if='show'>hello world</div>
+        </transition>
+        <transition name='foo'>
+            <div v-if='show'>hello world</div>
+        </transition>
+        <button @click='clickEvent'>button</button>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#root',
+            data: {
+                show: true
+            },
+            methods: {
+                clickEvent() {
+                    this.show = !this.show
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
